@@ -1,3 +1,8 @@
+let num1 = '';
+let num2 = '';
+let operator = '';
+
+
 function addNums(num1, num2) {
     return num1 + num2;
 }
@@ -11,11 +16,17 @@ function divideNums(num1, num2) {
 function multiplyNums(num1, num2) {
     return num1 * num2;
 }
-console.log(addNums(2,5));
-console.log(subNums(2,5));
-console.log(divideNums(6,3));
-console.log(multiplyNums(10, 2));
 
-function userInput(num1, num2, operator) {
-    
+function calculateSums(num1, num2, operator) {
+    if(operator === "+") {
+        return addNums(num1, num2);
+    } else if (operator === "-") {
+        return subNums(num1, num2);
+    } else if (operator === "/") {
+        return divideNums(num1, num2);
+    } else if (operator === "*") {
+        return multiplyNums(num1, num2);
+    } else {
+        return "Invalid Operator";
+    }
 }
