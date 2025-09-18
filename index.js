@@ -45,23 +45,41 @@ function appendNumber(num) {
 
 //Function to add the operator
 function appendOperator(op) {
-    if (num1 !== '') {
+    if (num1 !== '' && num2 !== '') {
+        calculate(op);
+    } else if (num1 !== '') {
         operator = op;
         isSecondNumber = true;
         updateDisplay();
     }
 }
 
-//Function for calculate button
-function calculate() {
-    if (num1 !== '' && num2 !== '' && operator !== '') {
-        const result = calculateSums(Number(num1), Number(num2), operator);
-        updateDisplay(result);
-        
-    }
+//Clear the display
+function clearAll() {
+    num1 = '';
+    num2 = '';
+    operator = '';
+    isSecondNumber = false;
+    updateDisplay('0');
 }
 
+//Function for calculate button
+function calculate(newOperator = '') {
+    if (num1 !== '' && num2 !== '' && operator !== '') {
+        let result = Math.floor(calculateSums(Number(num1), Number(num2), operator));
+        updateDisplay(result);
+        
+        num1 = result.toString();
+        num2 = '';
+        operator = newOperator;
+        isSecondNumber = true;
 
+    } else if (num1 === '' || num2 === '') {
+        return updateDisplay('ERROR');
+
+    }
+
+}
 
 //Update Display
 function updateDisplay(content = '') {
